@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drew's Café - Menu</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #654321;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8B4513;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: #8B4513;
+        }
+        
+        /* Menu Hero Section */
+        .menu-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .menu-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .menu-hero p {
+            font-size: 24px;
+            font-weight: 300;
+        }
+        
+        /* Menu Categories */
+        .menu-categories {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-tab {
+            padding: 12px 24px;
+            background-color: white;
+            border: 2px solid #8B4513;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .category-tab:hover, .category-tab.active {
+            background-color: #8B4513;
+            color: white;
+        }
+        
+        .menu-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .menu-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #8B4513;
+            font-size: 32px;
+            font-weight: 300;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .item-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .item-content {
+            padding: 20px;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .item-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #8B4513;
+        }
+        
+        .item-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            padding: 4px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .tag.veg {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .tag.spicy {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .tag.gluten-free {
+            background-color: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        /* Special Offers */
+        .special-offers {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .offer-card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid #8B4513;
+        }
+        
+        .offer-card h3 {
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #8B4513;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-item h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .newsletter {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #555;
+        }
+        
+        .newsletter h3 {
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-form input {
+            padding: 10px 15px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #444;
+            color: white;
+            min-width: 200px;
+        }
+        
+        .newsletter-form button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .menu-hero h1 {
+                font-size: 36px;
+            }
+            
+            .menu-hero p {
+                font-size: 18px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">DREW'S CAFÉ</div>
+            <nav>
+                <ul>
+                    <li><a href="drew's.html">Home</a></li>
+                    <li><a href="thisisus.html">This is us</a></li>
+                    <li><a href="Menu.html" class="active">Menu</a></li>
+                    <li><a href="Contactus.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Fresh Ingredients, Exceptional Flavors</p>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="coffee">Coffee & Tea</div>
+                <div class="category-tab" data-category="breakfast">Breakfast</div>
+                <div class="category-tab" data-category="lunch">Lunch</div>
+                <div class="category-tab" data-category="pastries">Pastries</div>
+            </div>
+
+            <!-- Coffee & Tea Section -->
+            <div class="menu-section active" id="coffee">
+                <h2 class="section-title">Coffee & Tea</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Espresso</h3>
+                                <span class="item-price">$3.50</span>
+                            </div>
+                            <p class="item-desc">Rich and bold single shot of our premium espresso blend.</p>
+                            <div class="item-tags">
+                                <span class="tag">Hot</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Cappuccino</h3>
+                                <span class="item-price">$4.75</span>
+                            </div>
+                            <p class="item-desc">Equal parts espresso, steamed milk, and velvety foam.</p>
+                            <div class="item-tags">
+                                <span class="tag">Hot</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Iced Latte</h3>
+                                <span class="item-price">$5.25</span>
+                            </div>
+                            <p class="item-desc">Espresso poured over ice with your choice of milk.</p>
+                            <div class="item-tags">
+                                <span class="tag">Iced</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Chai Latte</h3>
+                                <span class="item-price">$4.50</span>
+                            </div>
+                            <p class="item-desc">Spiced black tea with steamed milk and honey.</p>
+                            <div class="item-tags">
+                                <span class="tag">Hot</span>
+                                <span class="tag spicy">Spicy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breakfast Section -->
+            <div class="menu-section" id="breakfast">
+                <h2 class="section-title">Breakfast</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Avocado Toast</h3>
+                                <span class="item-price">$9.50</span>
+                            </div>
+                            <p class="item-desc">Smashed avocado on artisan bread with cherry tomatoes and microgreens.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1558581933-1dc8e57e6c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Breakfast Burrito</h3>
+                                <span class="item-price">$11.25</span>
+                            </div>
+                            <p class="item-desc">Scrambled eggs, black beans, cheese, and salsa in a flour tortilla.</p>
+                            <div class="item-tags">
+                                <span class="tag spicy">Spicy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Acai Bowl</h3>
+                                <span class="item-price">$10.75</span>
+                            </div>
+                            <p class="item-desc">Blended acai topped with granola, banana, and honey.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                                <span class="tag gluten-free">Gluten-Free</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lunch Section -->
+            <div class="menu-section" id="lunch">
+                <h2 class="section-title">Lunch</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Turkey Club</h3>
+                                <span class="item-price">$12.50</span>
+                            </div>
+                            <p class="item-desc">Roasted turkey, bacon, lettuce, tomato, and mayo on toasted bread.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Margherita Pizza</h3>
+                                <span class="item-price">$14.25</span>
+                            </div>
+                            <p class="item-desc">Fresh mozzarella, tomato sauce, and basil on thin crust.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Caesar Salad</h3>
+                                <span class="item-price">$10.75</span>
+                            </div>
+                            <p class="item-desc">Crisp romaine with parmesan, croutons, and our house Caesar dressing.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pastries Section -->
+            <div class="menu-section" id="pastries">
+                <h2 class="section-title">Pastries</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1555507036-ab794f27d2e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Croissant</h3>
+                                <span class="item-price">$3.75</span>
+                            </div>
+                            <p class="item-desc">Buttery, flaky classic French croissant.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Chocolate Chip Cookie</h3>
+                                <span class="item-price">$2.50</span>
+                            </div>
+                            <p class="item-desc">Freshly baked with dark chocolate chunks.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3 class="item-name">Blueberry Muffin</h3>
+                                <span class="item-price">$3.25</span>
+                            </div>
+                            <p class="item-desc">Moist muffin bursting with fresh blueberries.</p>
+                            <div class="item-tags">
+                                <span class="tag veg">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="special-offers">
+        <div class="container">
+            <h2 class="section-title">Daily Specials</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <h3>Happy Hour</h3>
+                    <p>2 PM - 5 PM Daily</p>
+                    <p>50% off all coffee beverages</p>
+                </div>
+                <div class="offer-card">
+                    <h3>Breakfast Combo</h3>
+                    <p>7 AM - 11 AM Weekdays</p>
+                    <p>Any breakfast item + coffee for $12</p>
+                </div>
+                <div class="offer-card">
+                    <h3>Lunch Deal</h3>
+                    <p>11 AM - 2 PM Daily</p>
+                    <p>Sandwich + side + drink for $15</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">DREW'S CAFÉ</div>
+                    <div class="footer-nav">
+                        <a href="drew's.html">Home</a>
+                        <a href="thisisus.html">This is us</a>
+                        <a href="#">Menu</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <h4>Address</h4>
+                        <p>500 Terry Francine St</p>
+                        <p>San Francisco, CA 94158</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Contact</h4>
+                        <p>123-456-7890</p>
+                        <p>info@drewscafe.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="newsletter">
+                <h3>Stay Connected</h3>
+                <p>Subscribe to our newsletter for updates on specials and events</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality for menu categories
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.category-tab');
+            const sections = document.querySelectorAll('.menu-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and sections
+                    tabs.forEach(t => t.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const category = this.getAttribute('data-category');
+                    document.getElementById(category).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

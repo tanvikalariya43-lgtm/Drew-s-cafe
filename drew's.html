@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=""
+    <title>Drew's Café - Home</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #654321;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8B4513;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #8B4513;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .hero-buttons .btn {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .hero-buttons .btn:hover {
+            background-color: white;
+            color: #333;
+        }
+        
+        .est {
+            margin-top: 40px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .section-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Drinks Section */
+        .drinks {
+            background-color: #f9f9f9;
+        }
+        
+        .drinks-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .drinks-text {
+            flex: 1;
+        }
+        
+        .drinks-image {
+            flex: 1;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 8px;
+        }
+        
+        .see-more {
+            display: inline-block;
+            margin-top: 20px;
+            color: #8B4513;
+            font-weight: 600;
+        }
+        
+        /* Enjoy Section */
+        .enjoy-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .enjoy-text {
+            flex: 1;
+        }
+        
+        .enjoy-image {
+            flex: 1;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 8px;
+        }
+        
+        /* Visit Section */
+        .visit {
+            background-color: #f9f9f9;
+        }
+        
+        .visit-content {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .visit-info {
+            flex: 1;
+        }
+        
+        .visit-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .visit-image {
+            height: 200px;
+            background-color: #ddd;
+            border-radius: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-item h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .newsletter {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #555;
+        }
+        
+        .newsletter h3 {
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-form input {
+            padding: 10px 15px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #444;
+            color: white;
+            min-width: 200px;
+        }
+        
+        .newsletter-form button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .drinks-content, .enjoy-content, .visit-content {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">DREW'S CAFÉ</div>
+            <nav>
+                <ul>
+                    <li><a href="drew's.html">Home</a></li>
+                    <li><a href="thisisus.html">This is us</a></li>
+                    <li><a href="Menu.html">Menu</a></li>
+                    <li><a href="Contactus.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>your go to spot for delicious eats & coffee</h1>
+            <p>café & restaurant Est. 2035</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn">Order online</a>
+                <a href="#" class="btn">Our menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drinks Section -->
+    <section class="drinks">
+        <div class="container">
+            <div class="section-header">
+                <h2># Drink</h2>
+                <p>The Freshest Cup in Town</p>
+            </div>
+            <div class="drinks-content">
+                <div class="drinks-text">
+                    <p>I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+                    <p>I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+                    <a href="#" class="see-more">see more</a>
+                </div>
+                <div class="drinks-image">
+                    <!-- Image placeholder -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enjoy Section -->
+    <section class="enjoy">
+        <div class="container">
+            <div class="section-header">
+                <h2># Enjoy.</h2>
+                <p>Make Yourself at Home</p>
+            </div>
+            <div class="enjoy-content">
+                <div class="enjoy-image">
+                    <!-- Image placeholder -->
+                </div>
+                <div class="enjoy-text">
+                    <p>I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+                    <p>I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+                    <a href="#" class="see-more">see more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section class="visit">
+        <div class="container">
+            <div class="section-header">
+                <h2>Drop By for a Bite</h2>
+            </div>
+            <div class="visit-content">
+                <div class="visit-info">
+                    <p><strong>Address</strong> 500 Terry Francine St.</p>
+                    <p>San Francisco, CA 94158</p>
+                    <p><strong>Sunday:</strong> Closed</p>
+                </div>
+                <div class="visit-images">
+                    <div class="visit-image"></div>
+                    <div class="visit-image"></div>
+                    <div class="visit-image"></div>
+                    <div class="visit-image"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Logo</div>
+                    <div class="footer-nav">
+                        <a href="#">Home</a>
+                        <a href="#">This is us</a>
+                        <a href="#">Menu</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <h4>Address</h4>
+                        <p>500 Terry</p>
+                        <p>Francine</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Contact</h4>
+                        <p>123-456-7890</p>
+                    </div>
+                </div>
+            </div>
+            <div class="newsletter">
+                <h3>Let's Connect</h3>
+                <p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <input type="text" placeholder="First name">
+                    <input type="text" placeholder="Last name">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
